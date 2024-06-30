@@ -1,7 +1,7 @@
 # Interactive Drawing Board
 
 An interactive drawing board developed with React and Spring Boot that allows multiple users to draw on a shared board in real-time.
-![Demo GIF]()
+![Demo GIF](https://github.com/alexandrac1420/MultiUserBoard/blob/master/Dise%C3%B1o%20sin%20t%C3%ADtulo.gif)
 
 ## Getting Started
 
@@ -185,7 +185,7 @@ I use [GitHub](https://github.com/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Your Name** - [yourusername](https://github.com/alexandrac1420)
+* **Alexandra Cortes Tovar** - [alexandrac1420](https://github.com/alexandrac1420)
 
 ## License
 
