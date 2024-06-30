@@ -130,69 +130,46 @@ To resolve Cross-Origin Resource Sharing (CORS) issues, the backend includes the
 
 The interactive drawing board uses HTTP requests to maintain communication between the frontend and backend. Draw actions are sent to the server using POST requests, and the current state of the drawing board can be retrieved using GET requests.
 
-
-## Deployment on AWS
-
-Follow these steps to deploy the application on AWS:
-
-1. **Start the virtual machine**
-
-    Launch an EC2 instance with your preferred configuration.
-
-    ![alt text](https://github.com/yourusername/InteractiveDrawingBoard/blob/master/images/image.png)
-
-2. **Transfer dependencies and the JAR file**
-
-    Upload the backend JAR file and the frontend build files to the created virtual machine.
-    ![alt text](https://github.com/yourusername/InteractiveDrawingBoard/blob/master/images/image-1.png)
-    ![alt text](https://github.com/yourusername/InteractiveDrawingBoard/blob/master/images/image-2.png)
-
-3. **Execute the following command**
-
-    Navigate to the directory where you uploaded the files and run:
-    ```sh
-    java -jar drawingboard-1.0-SNAPSHOT.jar
-    ```
-    This will start the Spring Boot service.
-
-4. Start the frontend server
-
-    Ensure the frontend build files are served using a static file server (e.g., Nginx).
-
-5. Verify the deployment
-
-    Check the application's availability using the public DNS of the EC2 instance on the appropriate port, e.g.,
-    ![alt text](https://github.com/yourusername/InteractiveDrawingBoard/blob/master/images/image-5.png)
-    ![alt text](https://github.com/yourusername/InteractiveDrawingBoard/blob/master/images/image-4.png)
-
 ## Architectural Design
 
-![alt text](https://github.com/yourusername/InteractiveDrawingBoard/blob/master/images/architecture.png)
-The architecture depicted and described involves a web application deployed on an AWS EC2 instance using the Spring framework and React.
+![alt text](https://github.com/alexandrac1420/MultiUserBoard/assets/138069735/7df76c74-b996-4a63-8c59-ab8caaf9dc99)
 
-1. User Access:
+The application architecture is divided into two main parts: the frontend developed with React and the backend developed with Spring Boot. Communication between these parts is done via HTTP requests, with Cross-Origin Resource Sharing (CORS) enabled to facilitate communication across different domains.
 
-    - The user accesses the application through the public URL of the EC2 instance.
-    - The user's browser makes an HTTP request to the server.
+### Frontend: React
+The frontend handles the user interface and allows users to draw on a shared board. It utilizes the following technologies and libraries:
 
-2. Spring Boot Backend:
+- React: Primary library for building the user interface.
+- p5.js: Library for creating graphics and animations.
+- Axios: Library for making HTTP requests to the backend.
 
-    - The request arrives at Spring's `DispatcherServlet`.
-    - The `DispatcherServlet` is responsible for receiving all incoming requests and delegating them to the appropriate controller based on URL mapping.
-      
-3. Controller:
+#### Frontend Project Structure
+- **HTML:** Basic structure of the web application.
+- **JavaScript (React):** Application logic and component management.
+- **CSS:** Styling of the application.
 
-    - The `DispatcherServlet` routes the request to the appropriate controller.
-    - The controller processes the request and uses services to handle the drawing operations.
-      
-4. WebSocket:
+The frontend communicates with the backend by sending and receiving data via HTTP requests using Axios.
 
-    - WebSocket connections are used to broadcast drawing events to all connected clients in real-time.
-      
-5. React Frontend:
+### Backend: Spring Boot
+The backend manages server-side logic, stores drawing action data, and handles communication with the frontend. It includes the following key components:
 
-    - The React application renders the drawing board and handles user interactions.
-    - It communicates with the backend through REST APIs and WebSockets.
+- Controller (DrawingBoardController): Receives and handles HTTP requests from the frontend.
+- Model (DrawAction): Represents a drawing action, including action type, coordinates, and color.
+
+#### Backend Project Structure
+- **Controller (DrawingBoardController):**
+  - `@GetMapping("/actions")`: Retrieves the list of drawing actions.
+  - `@PostMapping("/actions")`: Adds a new drawing action.
+  - `@PostMapping("/clear")`: Clears all drawing actions.
+
+- **Model (DrawAction):** Defines the structure of a drawing action.
+
+The backend is configured to allow CORS requests from any origin, facilitating communication with the frontend.
+
+### Communication Between Frontend and Backend
+- **HTTP:** The frontend sends HTTP requests to the backend to send drawing actions and receive the current state of the board.
+- **CORS:** Enabled on the backend to allow communication with the frontend from any origin.
+
 
 ## Built With
 
