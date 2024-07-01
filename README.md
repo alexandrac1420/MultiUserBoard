@@ -170,6 +170,41 @@ The backend is configured to allow CORS requests from any origin, facilitating c
 - **HTTP:** The frontend sends HTTP requests to the backend to send drawing actions and receive the current state of the board.
 - **CORS:** Enabled on the backend to allow communication with the frontend from any origin.
 
+## Deployment on AWS
+
+Follow these steps to deploy the application on AWS:
+
+1. **Start the virtual machine**
+
+    Launch an EC2 instance with your preferred configuration.
+
+    ![alt text](https://github.com/alexandrac1420/CalculadoraWeb/blob/master/Pictures/image.png)
+
+2. **Transfer dependencies and the JAR file**
+
+    Upload the dependencies.zip (containing necessary dependencies) and the built JAR file to the created virtual machine.
+    ![alt text](https://github.com/alexandrac1420/CalculadoraWeb/blob/master/Pictures/image-1.png)
+    ![alt text](https://github.com/alexandrac1420/CalculadoraWeb/blob/master/Pictures/image-2.png)
+
+3. **Execute the following command**
+
+    Navigate to the directory where you uploaded the files and run:
+    ```sh
+     java -jar demo-0.0.1-SNAPSHOT.jar
+    ```
+    This will start the Spring service.
+
+4. Start the Spring service
+
+    Ensure the Spring Boot application starts without errors.
+    ![alt text](https://github.com/alexandrac1420/CalculadoraWeb/blob/master/Pictures/image-3.png)
+
+5. Verify the deployment
+
+    Check the application's availability using the public DNS of the EC2 instance on port 8080, e.g.,
+    ![alt text](https://github.com/alexandrac1420/MultiUserBoard/assets/138069735/e49a5fb0-4986-48a0-899b-c858644058ba)
+)
+
 
 ## Built With
 
